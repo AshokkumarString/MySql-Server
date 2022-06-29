@@ -304,6 +304,8 @@ class sp_payforcurrentinvoicetask(APIView):
                 "invoicestatus": "Paid",
                 "amount_received": int(request.data['amount']),
                 "balancedue": balancedueamount,
+                "invoicesummaryclientid":invoicedetails[0]['invoicesummaryclient_id'],
+                "invoice_companyid":invoicedetails[0]['invoice_company_id']
             }
             update_invoicesummary = serialization.seralizationTblInvoicesummary(
                 models.TblInvoicesummary.objects.get(pk=invoicedetails[0]["id"]), updateinvoicesummary)
@@ -319,6 +321,8 @@ class sp_payforcurrentinvoicetask(APIView):
                 "invoicestatus": "Partially Paid",
                 "amount_received": int(request.data['amount']),
                 "balancedue": balancedueamount,
+                "invoicesummaryclientid":invoicedetails[0]['invoicesummaryclient_id'],
+                "invoice_companyid":invoicedetails[0]['invoice_company_id']
             }
             update_invoicesummary = serialization.seralizationTblInvoicesummary(
                 models.TblInvoicesummary.objects.get(pk=invoicedetails[0]["id"]), updateinvoicesummary)
@@ -333,7 +337,7 @@ class sp_payforcurrentinvoicetask(APIView):
         current_time = now.strftime("%H:%M:%S")
         currentdate = datetime.today().strftime('%Y-%m-%d')
         transaction_dict = {
-            "transactiontask": Invoicedata['tbltasklist_id'],
+            "transactiontaskid": Invoicedata['tbltasklist_id'],
             "date": currentdate,
             "time": current_time,
             "amount": userinput['amount'],
@@ -342,8 +346,8 @@ class sp_payforcurrentinvoicetask(APIView):
             "originalcompanyid": 0,
             "salesorderid": Invoicedata['salesorder_id'],
             "transactiontype": "Spend",
-            "companyid": Invoicedata['companyid'],
-            "transaction_clientid": Invoicedata['client'],
+            "companyid": Invoicedata['invoice_company_id'],
+            "transaction_clientid": Invoicedata['invoicesummaryclient_id'],
             "userid_id": userinput['userid'],
              "voucherid":""
         }
