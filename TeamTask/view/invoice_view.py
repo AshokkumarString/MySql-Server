@@ -457,7 +457,8 @@ def getinvoicewithfilterdata(request):
                 "taskid":"" if invoice.tbltasklist is None else invoice.tbltasklist.id,
                 "task":"" if invoice.tbltasklist is None else invoice.tbltasklist.task,
                 "company_name":invoice.invoicesummaryclient.company_name,
-                "engineer_name":invoice.invoicesummaryclient.engineer_name
+                "engineer_name":invoice.invoicesummaryclient.engineer_name,
+                "subclient":"" if invoice.tbltasklist is None else invoice.tbltasklist.subclient
             }
         # print(data)
         Return_data.append(data)

@@ -211,7 +211,7 @@ class TodoListView(generics.ListAPIView):
     serializer_class = SerializationTaskList
     filter_backends = (DjangoFilterBackend, SearchFilter)
     filterset_fields = {'startdate': ['gte', 'lte', 'exact'], 'enddate': ['gte', 'lte', 'exact'], 'id': ['exact'], 'date': ['exact'], 'task': ['exact'], 'assignto': ['exact'],
-                        'status': ['in', 'exact'], 'priority': ['exact'], 'time': ['exact'], 'isdeleted': ['exact'], 'plantype': ['exact'], 'client': ['exact'],
+                        'status': ['in', 'exact'], 'priority': ['exact'], 'time': ['exact'], 'isdeleted': ['exact'], 'plantype': ['exact'], 'client': ['exact'],'subclient':['exact'],
                         'advanceamount': ['exact']}
 
 
